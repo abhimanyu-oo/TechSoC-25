@@ -8,8 +8,9 @@ int main() {
     "The Caesar Cipher is one of the oldest and simplest encryption techniques, named after Julius Caesar who used it to protect his military communications.\n"
     "It works by shifting each letter in the alphabet by a fixed number of positions.\n";   // Random Ignorable Gibbrish.
     cout << endl;
-    cout << "Encoder : E\n";
-    cout << "Decoder : D\n";
+    cout << "This Program offers to both encode as well as decode caeser cipher by user determined shifting of code.\n";
+    cout << "For Encoder : E\n";
+    cout << "For Decoder : D\n";
     cout << "Which one do you wish to use : ";
     cin >> in; // Decides weather user wants to encode or decode.
     cin.ignore(); // This is there as without this the leftover \n from cin >> in interferes with cin.getline(ar , 1000) command.
