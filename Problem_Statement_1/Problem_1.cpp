@@ -9,8 +9,8 @@ int main() {
     "It works by shifting each letter in the alphabet by a fixed number of positions.\n";   // Random Ignorable Gibbrish.
     cout << endl;
     cout << "This Program offers to both encode as well as decode caeser cipher by user determined shifting of code.\n";
-    cout << "For Encoder : E\n";
-    cout << "For Decoder : D\n";
+    cout << "To Encode a message : E\n";
+    cout << "To Decode a message : D\n";
     cout << "Which one do you wish to use : ";
     cin >> in; // Decides weather user wants to encode or decode.
     cin.ignore(); // This is there as without this the leftover \n from cin >> in interferes with cin.getline(ar , 1000) command.
@@ -20,9 +20,10 @@ int main() {
         cout << "Please enter the line: ";
         cin.getline(ar , 1000);
         int x;
-        cout << "How much Shift should be made in the statement : "; // Asks the user the amount of Shift
+        cout << "How much Shift should be made in the statement (1-25): "; // Asks the user the amount of Shift
         cin >> x;
         cin.ignore();
+        x %= 26;
 
         if (in == 'E' || in == 'e') {
             for (int i = 0; ar[i] != '\0'; i++) {
@@ -49,7 +50,7 @@ int main() {
                 } else if (ar[i] > ('A' + x - 1) && ar[i] <= 'Z') {
                     ar[i] -= x;
                 }
-                cout << ar[i];
+                cout << "Result : " << ar[i];
             }
         }
         else {
