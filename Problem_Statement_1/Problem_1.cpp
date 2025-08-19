@@ -12,15 +12,15 @@ int main() {
     cout << "To Encode a message : E\n";
     cout << "To Decode a message : D\n";
     cout << "Which one do you wish to use : ";
-    cin >> in; // Decides weather user wants to encode or decode.
+    cin >> in;
     cin.ignore(); // This is there as without this the leftover \n from cin >> in interferes with cin.getline(ar , 1000) command.
 
-    if (in == 'E' || in == 'e' || in == 'D' || in == 'd') { // This statement exists for the sole purpose of allowing me to show error message if any other response is entered.
+    if (in == 'E' || in == 'e' || in == 'D' || in == 'd') {
         char ar[1000]; // Array to store the line to encoded to decoded.
         cout << "Please enter the line: ";
         cin.getline(ar , 1000);
         int x;
-        cout << "How much Shift should be made in the statement (1-25): "; // Asks the user the amount of Shift
+        cout << "How much Shift should be made in the statement (1-25): ";
         cin >> x;
         cin.ignore();
         x %= 26;
@@ -28,7 +28,7 @@ int main() {
         if (in == 'E' || in == 'e') {
             for (int i = 0; ar[i] != '\0'; i++) {
                 if (ar[i] >= ('z' - x + 1) && ar[i] <= 'z') { // if i had just put same command on all the letters it won't work so i made this range so that the value of char remains in range of alphabet.
-                    ar[i] = ar[i] + x - 26; // - 26 makes it so that the value going out of bound comes back to start and such that after z the alphabet starts again with a.
+                    ar[i] = ar[i] + x - 26;
                 } else if (ar[i] >= ('Z' - x + 1) && ar[i] <= 'Z') {
                     ar[i] = ar[i] + x - 26;
                 } else if (ar[i] >= 'a' && ar[i] < ('z' - x + 1)) { // these ranges were partially achieved through thinking and the edges were smoothed out later( adding the +1).
@@ -41,8 +41,8 @@ int main() {
         }
         else if (in == 'D' || in == 'd') {
             for (int i = 0; ar[i] != '\0'; i++) {
-                if (ar[i] >= 'a' && ar[i] <= ('a' + x - 1)) { // Decode is the same as encode but the signs are reversed and ranges now start from 'a' rather than 'z'.
-                    ar[i] = ar[i] - x + 26; // this is because the encoded last letters now are at the start of the alphabet.
+                if (ar[i] >= 'a' && ar[i] <= ('a' + x - 1)) {
+                    ar[i] = ar[i] - x + 26;
                 } else if (ar[i] >= 'A' && ar[i] <= ('A' + x - 1)) {
                     ar[i] = ar[i] - x + 26;
                 } else if (ar[i] > ('a' + x - 1) && ar[i] <= 'z') {
@@ -56,7 +56,7 @@ int main() {
         else {
         }
     } else {
-        cout << "Invalid Input!\n"; // Just your everyday error statement for an invalid response.
+        cout << "Invalid Input!\n";
         cout << "ERROR!!!" << endl;
     }
 
