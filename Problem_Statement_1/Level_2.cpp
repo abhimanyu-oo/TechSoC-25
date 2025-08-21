@@ -3,9 +3,7 @@
 #include <cstdlib>
 #include <cctype>
 #include <array>
-
 using namespace std;
-
 string Cipher(const string &text, int shift) { // coding function. improved or simpler than prev submitted in PS0.
     string result = "";
     for (char ch : text) {
@@ -62,9 +60,6 @@ int best(const string& message) { // function that finds the most optimum shift.
     cout << "Detected shift: " << bestShift << endl;
     return bestShift;
 }
-
-
-
 int main() {
     char Opt;
     cout << "===Caeser Cipher Program===\n";
