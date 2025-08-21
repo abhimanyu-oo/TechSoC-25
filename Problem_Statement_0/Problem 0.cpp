@@ -16,6 +16,19 @@ double sqrt(double sq){
     return ans;
 }
 
+double mysin(double x) {
+    double val[100];
+    val[0] = x;
+    for (int i = 1; i < 100; i++) {
+        val[i] = -val[i-1]*x*x/((2*i)*(2*i+1));
+    }
+    double ans = 0;
+    for (int i = 0; i < 100; i++) {
+        ans += val[i];
+    };
+    return ans;
+}
+
 int main() {
 
     char func;
@@ -24,12 +37,13 @@ int main() {
     "Multiplication : *\n"
     "Division : /" << endl;
     cout << endl;
-    cout << "Square Root : sq\n"
+    cout << "Square Root : rt\n"
     "Integer Powers : p\n"
     "a^b (power) : ^\n"
     "e^x (Exponential) : e\n"
     "Natural Logarithm : ln\n"
-    "Logarithm base 10 : 10" << endl;
+    "Logarithm base 10 : 10\n";
+    cout << "Sin : s" << endl;
     cout << endl;
     cout << "Which function do you want to perform: ";
     cin >> func;
@@ -53,7 +67,7 @@ int main() {
         cout << num1*num2;
     } else if (func == '/' ) {
         cout << num1/num2;
-    } else if (func == 's' ) {
+    } else if (func == 'rt' ) {
         double sq_root=sqrt(num1);
         cout << sq_root;
     } else if (func == 'p' ) {
@@ -70,6 +84,9 @@ int main() {
         cout << ans;
     } else if (func == '1') {
         double ans = log(num1)/log(10);
+        cout << ans;
+    } else if (func == 's') {
+        double ans = mysin(num1);
         cout << ans;
     } else {
             cout << "Invalid function Entered" << endl;
