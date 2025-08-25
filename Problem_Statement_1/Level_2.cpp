@@ -1,11 +1,10 @@
 #include <iostream>
 #include <string>
-#include <cstdlib>
 #include <cctype>
 #include <array>
 using namespace std;
 string Cipher(const string &text, int shift) { // coding function. improved or simpler than prev submitted in PS0.
-    string result = "";
+    string result;
     for (char ch : text) {
         if (isalpha(ch)) {
             char base = isupper(ch) ? 'A' : 'a';
@@ -45,25 +44,26 @@ int best(const string& message) { // function that finds the most optimum shift.
         string attempt = Cipher(message, -s);
         freqs[s] = frequency(attempt);
     } // find frequency of letters for each shift and stores them in a 2-D Array.
-    int bestShift = 0;
-    double bestScore = 100000000; // given a high value so that this can change in further loops.
+    int bestShift1;
+    double bestScore = 100000000;// given a high value so that this can change in further loops.
+    double score[26];
     for (int s = 0; s < 26; s++) {
-        double score = 0.0;
         for (int j = 0; j < 26; j++) {
-            score += abs(freqs[s][j] - ENG[j]);
+            score[s] += abs(freqs[s][j] - ENG[j]);
         } // finds the difference of frequency in a random decoding and compares that to english lang.
-        if (score < bestScore) { // reason why it was given high value otherwise this wont work.
-            bestScore = score;
-            bestShift = s;
+        if (score[s] < bestScore) {// reason why it was given high value otherwise this won't work.
+            bestScore = score[s];
+            bestShift1 = s;
         }
     }
-    cout << "Detected shift: " << bestShift << endl;
-    return bestShift;
+    cout << "Detected shift: " << bestShift1 << endl;
+    cout << "\nResult: " << Cipher(message, -bestShift1);
+    return bestShift1;
 }
 int main() {
     char Opt;
-    cout << "===Caeser Cipher Program===\n";
-    cout << "This Program offers to both encode as well as decode caeser cipher by user determined shifting of code.\n";
+    cout << "===Caesar Cipher Program===\n";
+    cout << "This Program offers to both encode as well as decode caesar cipher by user determined shifting of code.\n";
     cout << "To Encode a message : E\n";
     cout << "To Decode a message : D\n";
     cout << "For Smart Decoding a the message : S\n";
@@ -85,15 +85,11 @@ int main() {
     cout << "Enter your message: ";
     getline(cin, message);
     if (Opt == 'e' || Opt == 'E') {
-        string output = Cipher(message, shift);
-        cout << "\nResult: " << output << "\n";
+        cout << "\nResult: " << Cipher(message, shift) << "\n";
     } else if (Opt == 'd' || Opt == 'D') {
-        string output = Cipher(message, -shift);
-        cout << "\nResult: " << output << "\n";
+        cout << "\nResult: " << Cipher(message, -shift) << "\n";
     } else {
-        int i = best(message);
-        string output = Cipher(message, -i);
-        cout << "\nResult: " << output << "\n";
+        best(message);
     }
     return 0;
 }
